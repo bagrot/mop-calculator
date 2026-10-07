@@ -1,0 +1,36 @@
+{
+  "name": "mop-vote-processor",
+  "version": "1.0.0",
+  "description": "Обработка голосов и расчёт МОП",
+  "author": "Электронный дом",
+  "private": true,
+  "type": "module",
+  "main": "desktop/main.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "desktop": "electron .",
+    "dist": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "ru.electron-dom.mop-votes",
+    "productName": "Обработка голосов",
+    "asar": true,
+    "files": ["desktop/**/*", "public/**/*", "server.mjs", "package.json", "node_modules/@oai/artifact-tool/**/*"],
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }], "signAndEditExecutable": false },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Обработка голосов",
+      "artifactName": "Обработка голосов Setup.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.0"
+  },
+  "dependencies": {
+    "@oai/artifact-tool": "2.8.39"
+  }
+}
